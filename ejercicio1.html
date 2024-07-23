@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div class="resultado" style="color:green;font-style: italic">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    // Escríbe aquí tu código
+    
+    document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const asunto = document.getElementById('asunto').value;
+            const mensaje = document.getElementById('mensaje').value;
+            
+            const errorNombre = document.querySelector('.errorNombre');
+            const errorAsunto = document.querySelector('.errorAsunto');
+            const errorMensaje = document.querySelector('.errorMensaje');
+            const resultado = document.querySelector('.resultado');
+
+            const regex = /^[a-zA-Z\s]+$/;
+
+            let valid = true;
+
+            if (!regex.test(nombre)) {
+                errorNombre.textContent = 'El nombre es requerido.';
+                valid = false;
+            } else {
+                errorNombre.textContent = '';
+            }
+
+            if (!regex.test(asunto)) {
+                errorAsunto.textContent = 'El asunto es requerido.';
+                valid = false;
+            } else {
+                errorAsunto.textContent = '';
+            }
+
+            if (!regex.test(mensaje)) {
+                errorMensaje.textContent = 'El mensaje es requerido';
+                valid = false;
+            } else {
+                errorMensaje.textContent = '';
+            }
+
+            if (valid) {
+                resultado.textContent = 'Mensaje enviado con éxito !!!';
+            } else {
+                resultado.textContent = '';
+            }
+        });
+    </script>
+</body>
+
+</html>
